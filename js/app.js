@@ -15,7 +15,7 @@ function Location(location, minCustomer, maxCustomer, avgSalesPerCust) {
   this.dailyTotalSales = 0; // will be totaled once method is called
 }
 
-Location.prototype.randomNumberOfCustomers = function() {
+Location.prototype.getCookieSales = function() {
   let tallySales = 0;
   let hourlySales = [];
   for(let i = 0; i < this.hoursOfOperation.length; i++) {
@@ -35,11 +35,11 @@ const paris = new Location ('Seattle', 20, 38, 2.3);
 const lima = new Location ('Seattle', 2, 16, 4.6);
 
 
-seattle.randomNumberOfCustomers();
-tokyo.randomNumberOfCustomers();
-dubai.randomNumberOfCustomers();
-paris.randomNumberOfCustomers();
-lima.randomNumberOfCustomers();
+seattle.getCookieSales();
+tokyo.getCookieSales();
+dubai.getCookieSales();
+paris.getCookieSales();
+lima.getCookieSales();
 
 
 Location.prototype.renderLocation = function() {
