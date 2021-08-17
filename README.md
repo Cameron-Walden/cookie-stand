@@ -1,2 +1,3 @@
 # cookie-stand
-Salmon Cookies projects for Code Fellows 201
+
+Salmon Cookies project for Code Fellows 201
