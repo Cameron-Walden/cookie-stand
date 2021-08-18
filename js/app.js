@@ -1,7 +1,7 @@
 'use strict';
 
-console.log('take a break, drink some water')
-console.log('as of rn these #s are the tallied up sales per hour:')
+console.log('Take a break, drink some water')
+console.log('As of rn these #s are the tallied up sales per hour:')
 
 const cityDiv = document.getElementById('cities');
 
