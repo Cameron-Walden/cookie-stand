@@ -1,0 +1,113 @@
+body {
+    background-color: burlywood;
+    height: 1000px;
+    
+}
+
+nav {
+    background-color: rgb(153, 135, 113);
+    height: 100px;
+    box-shadow: 5px 10px 15px black
+}
+a {
+    justify-content: space-evenly;
+    padding-bottom: 40px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    padding-top: 30px;
+}
+
+a:visited {
+    color:black;
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 80px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 100px;
+    position: relative;
+    top: 10px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    position: relative;
+}
+
+#salesTable{
+    text-align: center;
+    position: relative;
+    border: 1px solid black;
+    box-shadow: 5px 10px 15px black;
+    background-color: blanchedalmond;
+    bottom: 100px;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+#salesTable {
+    position: relative;
+    top: 100px;
+    left: 620px;
+    padding-bottom: 50px
+}
+
+/* //button obviously not working yet */
+button {
+    position: relative;
+    top: 130px;
+    left: 850px;
+}
+
+section:nth-child(3) {
+    display: flex;
+    /* color: red; */
+    position: relative;
+    top: 100px;
+    padding: 100px;
+    margin-bottom: 100px;
+
+}
+
+section:nth-child(3) h3 {
+    font-size: 50px;
+    padding-top: 30px;
+}
+
+section:nth-child(3) img {
+    display: flex;
+    float: left;
+    position: relative;
+    right: 300px;
+    box-shadow: 5px 10px 10px black
+}
+
+
+section:nth-child(3) article {
+    position: relative;
+    height: 50%;
+    width: 20%;
+    /* color: red; */
+    line-height: 1.5em;
+    right: 500px;
+}
+
+section:nth-child(4) {
+    max-height: 500px;
+    max-width: 500px;
+    display:  flex;
+    margin-left: 30px;
+}
+
+
