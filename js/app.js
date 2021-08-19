@@ -1,79 +1,145 @@
 'use strict';
 
-// console.log('take a break, drink some water')
-// console.log('as of rn these #s are the tallied up sales per hour for each city:')
+console.log('Take a break, drink some water.');
 
-const cityDiv = document.getElementById('cities');
+const mySalesTable = document.getElementById('salesTable');
 
-function Location(location, minCustomer, maxCustomer, avgSalesPerCust) {
-  this.location = location;
+const hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+
+function Location(name, minCustomer, maxCustomer, avgSalePerCust) {
+  this.name = name;
   this.minCustomer = minCustomer;
   this.maxCustomer = maxCustomer;
-  this.avgSalesPerCust = avgSalesPerCust;
-  this.hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-  this.salesPerHour = []; //will get filled once method is called
-  this.dailyTotalSales = 0; // will be totaled once method is called
-  Location.locationArray.push(this)
+  this.avgSalePerCust = avgSalePerCust;
+  this.hourlySalesArray = [];
+
+  Location.allLocations.push(this);
 }
 
-Location.locationArray = [];
+Location.allLocations = [];
+Location.hourlySalesArray =[];
 
-Location.prototype.getCookieSales = function() {
-  let tallySales = 0;
-  let hourlySales = [];
-  for(let i = 0; i < this.hoursOfOperation.length; i++) {
-      let randomNumberOfCustomers = Math.floor(Math.random() * (this.maxCustomer - this.minCustomer) + this.minCustomer); //random number of customers per hour
-      hourlySales.push(Math.ceil(randomNumberOfCustomers * this.avgSalesPerCust));//muliplies the random customers and avg sales per customer 
-      tallySales += (Math.ceil(randomNumberOfCustomers * this.avgSalesPerCust));//tallies total cookie sales
-      // console.log(tallySales);
+Location.prototype.randomNumberOfCustomers = function() {
+  return Math.floor(Math.random() * (this.maxCustomer - this.minCustomer) + this.minCustomer);
+}
+
+Location.prototype.fillHourlySalesArray = function() {
+  for (let i = 0; i < hoursOfOperation.length; i++) {
+    let salesPerHour = this.randomNumberOfCustomers() * this.avgSalePerCust;
+    this.hourlySalesArray.push(Math.ceil(salesPerHour));
   }
-  this.salesPerHour = hourlySales; //reassigning varible from Location() above
-  this.dailyTotalSales = tallySales; //again, reassigning variable from Location() above
-};
+}
+
+const seattle = new Location ('Seattle:', 23, 65, 6.3);
+const tokyo = new Location ('Tokyo:', 3, 24, 1.2);
+const dubai = new Location ('Dubai:', 11, 38, 3.7);
+const paris = new Location ('Paris:', 20, 38, 2.3);
+const lima = new Location ('Lima:', 2, 16, 4.6);
+
+function fillHourlySalesArrayAllLocations() {
+  for (let i = 0; i < Location.allLocations.length; i++) {
+    const currentLocation = Location.allLocations[i];
+    currentLocation.fillHourlySalesArray();
+  }
+}
+
+fillHourlySalesArrayAllLocations();
 
 
-const seattle = new Location ('Seattle', 23, 65, 6.3);
-const tokyo = new Location ('Tokyo', 3, 24, 1.2);
-const dubai = new Location ('Dubai', 11, 38, 3.7);
-const paris = new Location ('Paris', 20, 38, 2.3);
-const lima = new Location ('Lima', 2, 16, 4.6);
+function _makeElement(tag, parent, text) {
+  const element = document.createElement(tag);
+  parent.appendChild(element);
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+}
 
-// console.log(Location.locationArray);
+Location.prototype.renderCity = function(body) {
+  let total = 0;
+  const rowElem = document.createElement('tr');
+  body.appendChild(rowElem);
+  // make a th with the city name
+  const thElem = _makeElement('th', rowElem, this.name);
+  // all cookies per hour should be tds
+  for (let i = 0; i < hoursOfOperation.length; i++) {
+    let cookiesThisHour = this.hourlySalesArray[i];
+    total += cookiesThisHour;
+    _makeElement('td', rowElem, cookiesThisHour);
+  }
+  _makeElement('td', rowElem, total)
 
-seattle.getCookieSales();
-tokyo.getCookieSales();
-dubai.getCookieSales();
-paris.getCookieSales();
-lima.getCookieSales();
+}
 
+function renderAllCities() {
+  let tbodyElem = _makeElement('tbody', mySalesTable, null);
+  for (let i = 0; i < Location.allLocations.length; i++) {
+    Location.allLocations[i].renderCity(tbodyElem);
+  }
+}
+//working on making a thead with all times 6am-7pm
+function makeTableHead() {
+  const tHeadElem = _makeElement('thead', mySalesTable, null); 
+    const tdElem = _makeElement('td', tHeadElem, "I want hoursOfOperation here ->", );
+    _makeElement('th', rowElem, null);
+    for(let i = 0; i < Location.hoursOfOperation[i]; i++) {
+      let hourText = Location.hoursOfOperation[i];
+      
 
-function makeTable() {
-  let body = document.getElementById('cities');
-  let tableElem = document.createElement('table');
-  let tableBody = document.createElement('tbody');
-  for(let i = 0; i < Location.locationArray.length; i++) {
-     let currentLocation = Location.locationArray[i];
-     console.log(currentLocation)
-    let rowElem = document.createElement('tr');
-    tableBody.appendChild(rowElem);
-    let tdElem = document.createElement('td');
-    let cityCell = currentLocation.location;
-    tdElem.textContent = cityCell;
-    rowElem.appendChild(tdElem);
-    for(let j = 0; j < currentLocation.hoursOfOperation.length; j++) {
-      let cellElem = document.createElement('td');
-      cellElem.textContent = currentLocation.salesPerHour[j];
-      rowElem.appendChild(cellElem);
+    } 
+}
+
+function makeTableFooter() {
+  const tfootElem = _makeElement('tfoot', mySalesTable, null);
+  const rowElem = _makeElement('tr', tfootElem, null);
+  _makeElement('th', rowElem, 'Total:');
+  let hourlySales = 0;
+  let grandTotal = 0;
+  for (let i = 0; i < hoursOfOperation.length; i++) {
+    for (let j = 0; j < Location.allLocations.length; j++) {
+      let currentLocation = Location.allLocations[j];
+      hourlySales += currentLocation.hourlySalesArray[i]
     }
-    tableBody.appendChild(rowElem);
+    _makeElement('td', rowElem, hourlySales);
+    grandTotal += hourlySales;
+    hourlySales = 0;
   }
-  tableElem.appendChild(tableBody);
-  body.appendChild(tableElem);
-  tableElem.setAttribute("border", "2");
+  _makeElement('td', rowElem, grandTotal);
 }
-makeTable();
 
-// below are my old functions. keeping as reference for now.
+renderAllCities();
+makeTableHead();
+makeTableFooter();
+
+// Old code for make table body? keeping here for reference as well as old code. 
+
+// function makeTableBody() {
+//   let body = document.getElementById('cities');
+//   let tableElem = document.createElement('table');
+//   let tableBody = document.createElement('tbody');
+//   for(let i = 0; i < Location.locationArray.length; i++) {
+//      let currentLocation = Location.locationArray[i];
+//      console.log(currentLocation)
+//     let rowElem = document.createElement('tr');
+//     tableBody.appendChild(rowElem);
+//     let tdElem = document.createElement('td');
+//     let cityCell = currentLocation.location;
+//     tdElem.textContent = cityCell;
+//     rowElem.appendChild(tdElem);
+//     for(let j = 0; j < currentLocation.hoursOfOperation.length; j++) {
+//       let cellElem = document.createElement('td');
+//       cellElem.textContent = currentLocation.salesPerHour[j];
+//       rowElem.appendChild(cellElem);
+//     }
+//     tableBody.appendChild(rowElem);
+//   }
+//   tableElem.appendChild(tableBody);
+//   body.appendChild(tableElem);
+//   tableElem.setAttribute("border", "2");
+// }
+// makeTableBody();
+
+// OLD OLD code from first day working on this. Don't think i'll need it, but keeping as a reference to go back to for now.
 
 // const cityDiv = document.getElementById('cities');
 
