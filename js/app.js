@@ -3,6 +3,7 @@
 console.log('Take a break, drink some water.');
 
 const mySalesTable = document.getElementById('salesTable');
+const newUser = document.getElementById('userForm');
 
 const hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
@@ -17,7 +18,7 @@ function Location(name, minCustomer, maxCustomer, avgSalePerCust) {
 }
 
 Location.allLocations = [];
-Location.hourlySalesArray =[];
+// Location.hourlySalesArray =[];
 
 Location.prototype.randomNumberOfCustomers = function() {
   return Math.floor(Math.random() * (this.maxCustomer - this.minCustomer) + this.minCustomer);
@@ -57,18 +58,17 @@ function _makeElement(tag, parent, text) {
 
 Location.prototype.renderCity = function(body) {
   let total = 0;
-  const rowElem = document.createElement('tr');
-  body.appendChild(rowElem);
+  const tableRowElem = document.createElement('tr');
+  body.appendChild(tableRowElem);
   // make a th with the city name
-  const thElem = _makeElement('th', rowElem, this.name);
+  const thElem = _makeElement('th', tableRowElem, this.name);
   // all cookies per hour should be tds
   for (let i = 0; i < hoursOfOperation.length; i++) {
     let cookiesThisHour = this.hourlySalesArray[i];
     total += cookiesThisHour;
-    _makeElement('td', rowElem, cookiesThisHour);
+    _makeElement('td', tableRowElem, cookiesThisHour);
   }
-  _makeElement('td', rowElem, total)
-
+  _makeElement('td', tableRowElem, total)
 }
 
 function renderAllCities() {
@@ -77,22 +77,23 @@ function renderAllCities() {
     Location.allLocations[i].renderCity(tbodyElem);
   }
 }
-//working on making a thead with all times 6am-7pm
+// working on making a thead with all times 6am-7pm
 function makeTableHead() {
   const tHeadElem = _makeElement('thead', mySalesTable, null); 
-    const tdElem = _makeElement('td', tHeadElem, "I want hoursOfOperation here ->", );
-    _makeElement('th', rowElem, null);
-    for(let i = 0; i < Location.hoursOfOperation[i]; i++) {
-      let hourText = Location.hoursOfOperation[i];
-      
+  const rowElem = _makeElement('tr', tHeadElem, null);
+  _makeElement('th', rowElem, "Hours:");
+    for(let i = 0; i < hoursOfOperation.length; i++) {
+       _makeElement('td', rowElem, hoursOfOperation[i]);
+      }
+  _makeElement('th', rowElem, "Grand Totals:")
+  } 
 
-    } 
-}
+
 
 function makeTableFooter() {
   const tfootElem = _makeElement('tfoot', mySalesTable, null);
   const rowElem = _makeElement('tr', tfootElem, null);
-  _makeElement('th', rowElem, 'Total:');
+  _makeElement('th', rowElem, 'Total for all stores per hour:');
   let hourlySales = 0;
   let grandTotal = 0;
   for (let i = 0; i < hoursOfOperation.length; i++) {
@@ -107,9 +108,81 @@ function makeTableFooter() {
   _makeElement('td', rowElem, grandTotal);
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  const target = event.target
+  let name = event.target.name.value;
+  let minCustomer = target.minCustomer.value;
+  minCustomer = parseInt(minCustomer);
+  let maxCustomer = target.maxCustomer.value;
+  maxCustomer = parseInt(maxCustomer);
+  let avgSalePerCust = target.avgSalePerCust.value;
+  avgSalePerCust = parseInt(avgSalePerCust)
+  //dont think i need hours of operation now
+  let hoursOfOperation = event.target.hoursOfOperation.value;
+  const newStore = new Location(name, minCustomer, maxCustomer, hoursOfOperation, avgSalePerCust);
+  // newStore.randomNumberOfCustomers();
+  newStore.grandTotal();
+  newStore.renderCity();
+  makeTableFooter();
+  document.getElementById('userForm').reset();
+//need a way to append new store to my table
+}
 renderAllCities();
+fillHourlySalesArray();
 makeTableHead();
 makeTableFooter();
+//do i need to call this here?
+handleSubmit();
+const submit = doucment.getElementById('userForm');
+submit.addEventListener('submit', handleSubmit);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//what I learned in class. Working off of this
+
+
+//working on new form?
+// function handleSubmitNew(submittedForm) {
+//   let infoIsValid = true;
+//   if (submittedForm.locationName.value == "") {
+//     alert("Please enter all required info");
+//     infoIsValid = false;
+//   }
+//   if (submittedForm.minnCustomer.value == "") {
+//     alert("Please enter all required info");
+//     infoIsValid = false;
+//   }
+//   if (submittedForm.maxxCustomer.value == "") {
+//     alert("Please enter all required info");
+//     infoIsValid = false;
+//   }
+//   if (submittedForm.avggCookieSale.value == "") {
+//     alert("Please enter all required info");
+//     infoIsValid = false;
+//   }
+//   let locationName = submittedForm.locationName.value;           
+//   let minCustomer = parseInt(submittedForm.minCustomer.value);
+//   let maxCustomer = parseInt(submittedForm.maxCustomer.value);
+//   let avgCookieSale = parseInt(submittedForm.avgCookieSale.value);
+//   if (infoIsValid){
+//     var newLocation = new Location (locationName, minCustomer, maxCustomer, avgCookieSale); 
+//     renderAllCities(newLocation);                              
+// }
+
+// handleSubmit();
+
 
 // Old code for make table body? keeping here for reference as well as old code. 
 
@@ -262,5 +335,4 @@ makeTableFooter();
 //     const currentLocation = locationsArray[i];
 //     currentLocation.fillHourlySalesArray()
 //     renderCity(currentLocation);
-//   }
-// }
+//  
