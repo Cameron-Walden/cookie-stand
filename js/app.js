@@ -129,11 +129,10 @@ function handleSubmit(event) {
 //need a way to append new store to my table
 }
 renderAllCities();
-fillHourlySalesArray();
 makeTableHead();
 makeTableFooter();
 //do i need to call this here?
-handleSubmit();
+// handleSubmit();
 const submit = doucment.getElementById('userForm');
 submit.addEventListener('submit', handleSubmit);
 
