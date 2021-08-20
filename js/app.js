@@ -93,7 +93,7 @@ function makeTableHead() {
 function makeTableFooter() {
   const tfootElem = _makeElement('tfoot', mySalesTable, null);
   const rowElem = _makeElement('tr', tfootElem, null);
-  _makeElement('th', rowElem, 'Total for all stores per hour:');
+  _makeElement('th', rowElem, 'Total for all stores per hour');
   let hourlySales = 0;
   let grandTotal = 0;
   for (let i = 0; i < hoursOfOperation.length; i++) {
@@ -128,12 +128,13 @@ function handleSubmit(event) {
   document.getElementById('userForm').reset();
 //need a way to append new store to my table
 }
+console.log(handleSubmit);
 renderAllCities();
 makeTableHead();
 makeTableFooter();
 //do i need to call this here?
-// handleSubmit();
-const submit = doucment.getElementById('userForm');
+handleSubmit();
+const submit = document.getElementById('userForm');
 submit.addEventListener('submit', handleSubmit);
 
 
