@@ -9,7 +9,7 @@ header {
 
 ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 a {
@@ -45,29 +45,19 @@ th, td {
     border: 1px solid black;
 }
 
-/*just so i can tell the difference for now*/
-td {
-    color: blue;
-}
-
-/*just so i can tell the difference for now*/
-th {
-    color: green;
-}
-
 form {
     display: flex;
-    float: right;
     width: 300px;
     height: 250px;
-    margin-right: 300px;
     padding: 1em;
+    margin-top: 40px;
     box-sizing: border-box;
     background : rgb(214, 198, 198) url(background.jpg);
     /* we create our grid */
     display  : grid;
     grid-template-columns : repeat(2, 1fr);
     /* grid-template-rows:20em 20em 20em 20em; */
+    box-shadow: 5px 10px 15px black;
 }
 
 #formSection {
@@ -82,11 +72,10 @@ legend {
     font-size: 20px;
 
 }
-label, input {
+
+footer {
     display: flex;
-    justify-content: center;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: gray;;
 }
-
-
-
-
