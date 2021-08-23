@@ -1,38 +1,157 @@
 body {
     background-color: burlywood;
+    /* margin: 0 auto; */
 }
 
 header {
-    background-color: gray;
-    padding: 20px;
+    background-color: rgba(8, 8, 8, 0.548);
+    height: 80px;
+    margin-bottom: 40px;
 }
+
 
 ul {
     display: flex;
     justify-content: space-evenly;
+    padding-top: 20px;
 }
 
 a {
     color: black;
     text-decoration: none;
+    font-size: 20px;
+    font-family: 'Allison', cursive;
+    font-size: 40px;
 }
 
-h1 {
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
+a:hover {
+    transition: 950ms;
+    color: whitesmoke;
 }
+
 
 #salmonPic {
     display: flex;
     justify-content: center;
-    padding-bottom: 100px;
+}
+/*still messing around with shake*/
+#salmonPic:hover {
+    animation: shake 0.5s;
 }
 
-/* ths is sales.html*/
-#salesTable {
+@keyframes shake {
+    0% { transform: translate(2px, 2px) rotate(1deg); }
+    15% { transform: translate(0px, -1px) rotate(0deg); }
+    30% { transform: translate(-2px, 1px) rotate(2deg); }
+    50% { transform: translate(4px, 3px) rotate(1deg); }
+    65% { transform: translate(2px, 0px) rotate(2deg); }
+    80% { transform: translate(0px, 3px) rotate(0deg); }
+    100% { transform: translate(-2px, 2px) rotate(1deg); }
+    15% { transform: translate(4px, 2px) rotate(0deg); }
+    30% { transform: translate(0px, 0px) rotate(2deg); }
+    50% { transform: translate(2px, 2px) rotate(1deg); }
+    65% { transform: translate(2px, -1px) rotate(0deg); }
+  }
+
+h2 {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Allison', cursive;
+    font-size: 85px;
+    /* padding-bottom: 40px; */
+    margin-bottom: 75px;
+}
+
+/*cutting board image*/
+section:nth-child(1) img {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    box-shadow: 5px 10px 15px black;
+    margin-top: 75px;
+}
+
+#indexArticle {
+    height: auto;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+     width: 50%; 
+    line-height: 2.5em;
+    font-size: 25px;
+    font-family: 'Lora', serif;
     position: relative;
-    left: 600px;
+    bottom: 590px;
+    width: 40%;
+} 
+
+
+footer {
+    background-color: rgba(8, 8, 8, 0.548);
+    position: relative;
+    margin-top: 2%;
+    height: 50;
+    width:100%;
+    text-align: center;
+    font-size: 0.8em;
+    bottom: 0;
+    height: 80px;
+}
+
+footer p {
+    font-size: 20px;
+    padding: 30px;
+}
+
+/*sales*/
+
+#formSection {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+    background-color: whitesmoke;
+    padding: 20px;
+    box-shadow: 1px 2px 3px black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#formSection legend {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#formSection label{
+    padding-right: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#formSection button {
+    /* background-color: black;
+    color: white; */
+    width: 100px;
+    margin-left: 20px;
+    border-radius: 100px;
+    font-weight: bold;
+}
+
+#formSection button:hover {
+    transition: 350ms;
+    background-color: thistle;
+}
+
+#salesTable {
+    align-content: center;
+    position: relative;
+    left: 370px;
     border: 1.5px solid black;
     box-shadow: 5px 10px 15px black;
     background-color: blanchedalmond;
@@ -43,34 +162,97 @@ h1 {
 
 th, td {
     border: 1px solid black;
+    padding: 10px;
+    box-shadow: 1px 2px 1px 1px;
 }
 
-form {
-    display: flex;
-    width: 300px;
-    height: 250px;
-    padding: 1em;
-    margin-top: 40px;
-    box-sizing: border-box;
-    background : rgb(214, 198, 198) url(background.jpg);
-    /* we create our grid */
-    display  : grid;
-    grid-template-columns : repeat(2, 1fr);
-    /* grid-template-rows:20em 20em 20em 20em; */
-    box-shadow: 5px 10px 15px black;
-}
+/*About section*/
 
-#formSection {
+#aboutSec {
+    flex-wrap: wrap;
+    margin-bottom: 150px;
+ }
+
+
+ #aboutSec img{
+    margin-bottom: 100px;
+ }
+
+ #aboutArticle {
+     text-align: center;
+     line-height: 2em;
+     width: 50%;
+     position: relative;
+     left: 500px;
+     font-size: 20px;
+ }
+
+/*Merch Section*/
+
+#merchSection {
     display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    align-content: center;
     justify-content: center;
-    padding-bottom: 50px;
 }
 
-legend {
+#merchSection img {
+    display: block;
+    margin: 30px;
+    box-shadow: 5px 10px 15px black;
+    width: 300px;
+    height: 300px;
+    border-radius: 100px;
+    position:relative;
+    top: 100px;
+    left: 550px;
+    margin-bottom: 250px;
+}
+
+#aboutArticle {
+     text-align: center;
+     line-height: 2em;
+     width: 50%;
+     position: relative;
+     left: 500px;
+     font-size: 20px;
+
+ }
+
+
+#merchSection p {
+    font-family: 'Rampart One', cursive;
     text-align: center;
-    padding-bottom: 10px;
-    font-size: 20px;
-
+    font-size: 25px;
+    position: relative;
+    left: 300px
 }
+
+/*Contact Section*/
+
+#contactSec {
+    flex-wrap: wrap;
+}
+
+#contactSec img {
+    margin-bottom: 40px;
+}
+
+#contactSec article {
+    line-height: 1.8em;
+    width: 50%;
+    position: relative;
+    left: 500px;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+#emailPat {
+    font-family: 'Lora', serif;
+    font-size: 70px;
+}
+
+
 
 
