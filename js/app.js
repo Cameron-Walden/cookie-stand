@@ -3,7 +3,6 @@
 console.log('Take a break, drink some water.');
 
 const mySalesTable = document.getElementById('salesTable');
-// const newUser = document.getElementById('userForm');
 const hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 const submit = document.getElementById('formSection');
 
@@ -31,11 +30,11 @@ Location.prototype.fillHourlySalesArray = function() {
   }
 }
 
-const seattle = new Location ('Seattle:', 23, 65, 6.3);
-const tokyo = new Location ('Tokyo:', 3, 24, 1.2);
-const dubai = new Location ('Dubai:', 11, 38, 3.7);
-const paris = new Location ('Paris:', 20, 38, 2.3);
-const lima = new Location ('Lima:', 2, 16, 4.6);
+const seattle = new Location ('Seattle', 23, 65, 6.3);
+const tokyo = new Location ('Tokyo', 3, 24, 1.2);
+const dubai = new Location ('Dubai', 11, 38, 3.7);
+const paris = new Location ('Paris', 20, 38, 2.3);
+const lima = new Location ('Lima', 2, 16, 4.6);
 
 function fillHourlySalesArrayAllLocations() {
   for (let i = 0; i < Location.allLocations.length; i++) {
@@ -82,7 +81,7 @@ function makeTableHead() {
        _makeElement('td', rowElem, hoursOfOperation[i]);
       }
   _makeElement('th', rowElem, "Grand Totals:")
-  } 
+} 
 
 function makeTableFooter() {
   const tfootElem = _makeElement('tfoot', mySalesTable, null);
@@ -101,8 +100,6 @@ function makeTableFooter() {
   }
   _makeElement('td', rowElem, grandTotal);
 }
-
-// const submit = document.getElementById('formSection');
 
 function handleSubmit(event) {
   event.preventDefault();
